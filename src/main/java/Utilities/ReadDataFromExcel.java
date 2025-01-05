@@ -2,6 +2,7 @@ package Utilities;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -10,9 +11,10 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ReadDataFromExcel
 {
-	public void readExcelData(String sheetName, String testCaseName) throws IOException
+	public ArrayList<String> readExcelData(String sheetName, String testCaseName) throws IOException
 	{
 		FileInputStream fis=new FileInputStream("C:\\Users\\Sayan Ghosh Dastidar\\RestAssuredLearning\\RestAssuredFrameworkExcelData\\demodata.xlsx");
+		ArrayList <String> al=new ArrayList<>();
 		XSSFWorkbook workbook=new XSSFWorkbook(fis);
 		int countOfSheets=workbook.getNumberOfSheets();
 		for(int i=0; i<countOfSheets; i++)
@@ -41,11 +43,12 @@ public class ReadDataFromExcel
 						while(testCaseCells.hasNext())
 						{
 							Cell targetCell=testCaseCells.next();
-							System.out.println(targetCell.getStringCellValue());
+							al.add(targetCell.getStringCellValue());
 						}
 					}
 				}
 			}
 		}
+		return al;
 	}
 }
