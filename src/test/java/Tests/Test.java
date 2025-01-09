@@ -1,8 +1,8 @@
-package Tests;
+package tests;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import Utilities.ReadDataFromExcel;
+import utilities.ReadDataFromExcel;
 
 public class Test
 {
