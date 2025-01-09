@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-01-09T10:19:07 IST" name="Default suite" finished-at="2025-01-09T10:19:10 IST" duration-ms="3131">
+  <suite started-at="2025-01-09T10:46:30 IST" name="Default suite" finished-at="2025-01-09T10:46:33 IST" duration-ms="2770">
     <groups>
     </groups>
-    <test started-at="2025-01-09T10:19:07 IST" name="Default test" finished-at="2025-01-09T10:19:10 IST" duration-ms="3131">
-      <class name="tests.AddBookTest">
-        <test-method signature="addBook()[pri:0, instance:tests.AddBookTest@5158b42f]" started-at="2025-01-09T10:19:07 IST" name="addBook" finished-at="2025-01-09T10:19:10 IST" duration-ms="3088" status="PASS">
+    <test started-at="2025-01-09T10:46:30 IST" name="Default test" finished-at="2025-01-09T10:46:33 IST" duration-ms="2770">
+      <class name="tests.LibraryAPI">
+        <test-method signature="addBook()[pri:0, instance:tests.LibraryAPI@478190fc]" started-at="2025-01-09T10:46:30 IST" name="addBook" finished-at="2025-01-09T10:46:33 IST" duration-ms="2732" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- addBook -->
-      </class> <!-- tests.AddBookTest -->
+      </class> <!-- tests.LibraryAPI -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
