@@ -13,17 +13,26 @@ import utilities.SpecBuilder;
 public class LibraryAPI extends SpecBuilder
 {
 	String bookID;
+	String bookName;
+	String isbn;
+	String aisle;
+	String author;
+
 	@Test(priority = 1)
 	public void addBook() throws IOException
 	{
 		ReadDataFromExcel readData=new ReadDataFromExcel();
 		ArrayList<String> al=readData.readExcelData("Library API", "Add Book");
+		bookName=al.get(1);
+		isbn=al.get(2);
+		aisle=al.get(3);
+		author=al.get(4);
 
 		HashMap <String, Object> jsonBody=new HashMap<>();
-		jsonBody.put("name", al.get(1));
-		jsonBody.put("isbn", al.get(2));
-		jsonBody.put("aisle", al.get(3));
-		jsonBody.put("author", al.get(4));
+		jsonBody.put("name", bookName);
+		jsonBody.put("isbn", isbn);
+		jsonBody.put("aisle", aisle);
+		jsonBody.put("author", author);
 	
 		String addBookResponse=given().log().all().spec(requestSpecBuilder()).body(jsonBody)
 		.when().post("Library/Addbook.php")
@@ -38,7 +47,7 @@ public class LibraryAPI extends SpecBuilder
 	{
 		given().log().all().spec(requestSpecBuilder()).queryParam("ID", bookID)
 		.when().get("Library/GetBook.php")
-		.then().log().all().spec(responseSpecBuilder());
+		.then().log().all().spec(responseSpecBuilder()).body("book_name[0]", equalTo(bookName)).body("isbn[0]", equalTo(isbn)).body("aisle[0]", equalTo(aisle));
 	}
 
 	@Test(priority = 3)
