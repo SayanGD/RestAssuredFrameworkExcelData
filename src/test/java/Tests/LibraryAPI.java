@@ -13,7 +13,7 @@ import utilities.SpecBuilder;
 public class LibraryAPI extends SpecBuilder
 {
 	String bookID;
-	@Test
+	@Test(priority = 1)
 	public void addBook() throws IOException
 	{
 		ReadDataFromExcel readData=new ReadDataFromExcel();
@@ -27,13 +27,21 @@ public class LibraryAPI extends SpecBuilder
 	
 		String addBookResponse=given().log().all().spec(requestSpecBuilder()).body(jsonBody)
 		.when().post("Library/Addbook.php")
-		.then().log().all().spec(responseSpec()).assertThat().statusCode(200).body("Msg", equalTo("successfully added")).extract().response().asString();
+		.then().log().all().spec(responseSpecBuilder()).body("Msg", equalTo("successfully added")).extract().response().asString();
 
 		JsonPath js=new JsonPath(addBookResponse);
 		bookID=js.getString("ID");
 	}
 
-	@Test
+	@Test(priority = 2)
+	public void getBook()
+	{
+		given().log().all().spec(requestSpecBuilder()).queryParam("ID", bookID)
+		.when().get("Library/GetBook.php")
+		.then().log().all().spec(responseSpecBuilder());
+	}
+
+	@Test(priority = 3)
 	public void deleteBook()
 	{
 		HashMap <String, Object> jsonBody=new HashMap<>();
@@ -41,6 +49,6 @@ public class LibraryAPI extends SpecBuilder
 
 		String deleteBookResponse=given().log().all().spec(requestSpecBuilder()).body(jsonBody)
 		.when().delete("Library/DeleteBook.php")
-		.then().log().all().spec(responseSpec()).body("msg", equalTo("book is successfully deleted")).extract().response().asString();
+		.then().log().all().spec(responseSpecBuilder()).body("msg", equalTo("book is successfully deleted")).extract().response().asString();
 	}
 }

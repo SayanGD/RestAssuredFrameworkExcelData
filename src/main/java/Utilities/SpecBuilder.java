@@ -17,7 +17,7 @@ public class SpecBuilder
 		return requestSpec;
 	}
 
-	public ResponseSpecification responseSpec()
+	public ResponseSpecification responseSpecBuilder()
 	{
 		responseSpec=new ResponseSpecBuilder().expectStatusCode(200).build();
 		return responseSpec;
