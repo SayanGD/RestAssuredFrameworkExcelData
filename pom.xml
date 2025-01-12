@@ -10,13 +10,16 @@
 			<groupId>io.rest-assured</groupId>
 			<artifactId>rest-assured</artifactId>
 			<version>5.5.0</version>
-			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured-common</artifactId>
+			<version>5.5.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
 			<version>7.10.2</version>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -27,7 +30,6 @@
 			<groupId>org.hamcrest</groupId>
 			<artifactId>hamcrest</artifactId>
 			<version>3.0</version>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.poi</groupId>
@@ -38,6 +40,11 @@
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
 			<version>5.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>CucumberJUnitRestAssuredFramework</groupId>
+			<artifactId>CucumberJUnitRestAssuredFramework</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>
