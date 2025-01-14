@@ -13,7 +13,7 @@ public class ReadDataFromExcel
 {
 	public ArrayList<String> readExcelData(String sheetName, String testCaseName) throws IOException
 	{
-		FileInputStream fis=new FileInputStream("C:\\Users\\Sayan Ghosh Dastidar\\RestAssuredLearning\\RestAssuredFrameworkExcelData\\testdata.xlsx");
+		FileInputStream fis=new FileInputStream(System.getProperty("user.dir")+"\\testdata.xlsx");
 		ArrayList <String> al=new ArrayList<>();
 		XSSFWorkbook workbook=new XSSFWorkbook(fis);
 		int countOfSheets=workbook.getNumberOfSheets();
