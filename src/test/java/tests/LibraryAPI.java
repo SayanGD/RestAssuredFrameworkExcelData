@@ -7,6 +7,8 @@ import org.testng.annotations.Test;
 import io.restassured.path.json.JsonPath;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
+
+import utilities.APIEndPoints;
 import utilities.ReadDataFromExcel;
 import utilities.SpecBuilder;
 
@@ -33,9 +35,11 @@ public class LibraryAPI extends SpecBuilder
 		jsonBody.put("isbn", isbn);
 		jsonBody.put("aisle", aisle);
 		jsonBody.put("author", author);
+
+		String resourcePath=APIEndPoints.valueOf("AddBook").getResource();
 	
 		String addBookResponse=given().log().all().spec(requestSpecBuilder()).body(jsonBody)
-		.when().post("Library/Addbook.php")
+		.when().post(resourcePath)
 		.then().log().all().spec(responseSpecBuilder()).body("Msg", equalTo("successfully added")).extract().response().asString();
 
 		JsonPath js=new JsonPath(addBookResponse);
@@ -45,8 +49,10 @@ public class LibraryAPI extends SpecBuilder
 	@Test(priority = 2)
 	public void getBook()
 	{
+		String resourcePath=APIEndPoints.valueOf("GetBook").getResource();
+
 		given().log().all().spec(requestSpecBuilder()).queryParam("ID", bookID)
-		.when().get("Library/GetBook.php")
+		.when().get(resourcePath)
 		.then().log().all().spec(responseSpecBuilder()).body("book_name[0]", equalTo(bookName)).body("isbn[0]", equalTo(isbn)).body("aisle[0]", equalTo(aisle));
 	}
 
@@ -54,10 +60,12 @@ public class LibraryAPI extends SpecBuilder
 	public void deleteBook()
 	{
 		HashMap <String, Object> jsonBody=new HashMap<>();
-		jsonBody.put("ID", bookID);
+		jsonBody.put("ID", "XYZ4141");
+
+		String resourcePath=APIEndPoints.valueOf("DeleteBook").getResource();
 
 		String deleteBookResponse=given().log().all().spec(requestSpecBuilder()).body(jsonBody)
-		.when().delete("Library/DeleteBook.php")
+		.when().delete(resourcePath)
 		.then().log().all().spec(responseSpecBuilder()).body("msg", equalTo("book is successfully deleted")).extract().response().asString();
 	}
 }
